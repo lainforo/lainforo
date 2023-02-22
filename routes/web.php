@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckAdminCookie;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// - Meta routes -
+Route::view('/', 'main.index')->name('index');
+
+// - Administration -
+Route::view('/admin/mastermind', 'admin.mastermind')->name('mastermind')->middleware(CheckAdminCookie::class);
