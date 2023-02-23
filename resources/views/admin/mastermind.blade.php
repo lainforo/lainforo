@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Index - {{ env('LF_SITENAME') }}</title>
+        <title>Mastermind - {{ env('LF_SITENAME') }}</title>
         <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" />
     </head>
     <body>
-        <h1 align="center">Welcome, {{ env('LF_ADMIN') }}!</h1>
+        <h1 align="center">{{ env('LF_SITENAME') }} Mastermind</h1>
 
         <div class="content">
             This is the <i>Mastermind Page</i>. In LainForo, this functions as an overview and admin panel for your site. By being able to view this page, you're also able to delete threads and replies by visiting them as you would normally, but now you'll have [delete] and [ban] next to them.
@@ -29,6 +29,32 @@
                 Public (indexed): <input name="is_indexed" type="checkbox" checked><br />
                 <input type="submit" value="New Board">
             </form>
+
+            <h1>Board List</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>URI</th>
+                        <th>Description</th>
+                        <th>Indexed?</th>
+                        <th>NSFW?</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($allboards as $board)
+                        <tr>
+                            <td>{{ $board->title }}</td>
+                            <td>{{ $board->uri }}</td>
+                            <td>{{ $board->description }}</td>
+                            <td>{{ $board->is_indexed }}</td>
+                            <td>{{ $board->is_nsfw }}</td>
+                            <td><a href="{{ route('admin.editboard', ['uri' => $board->uri]) }}">Edit {{ $board->title }}</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
         <div class="footer">

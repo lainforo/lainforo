@@ -56,3 +56,11 @@ pre {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
     font-family: inherit;
 }
+
+table, th, td {
+    border:1px solid black;
+}
+
+td {
+    padding: 3px;
+}

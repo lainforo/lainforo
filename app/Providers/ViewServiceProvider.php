@@ -25,11 +25,17 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Wildcard for any admin pages
-        View::composer(['admin.mastermind'], function ($view) {
+        View::composer(['admin.*'], function ($view) {
             $view->with([
                 'boardcount' => Board::count(),
                 'allboards' => Board::orderBy('uri', 'asc')->get(),
                 'postcount' => Thread::count(),
+            ]);
+        });
+
+        View::composer(['admin.editboard'], function ($view) {
+            $view->with([
+                'board' => Board::where('uri', request()->route()->parameter('uri'))->first(),
             ]);
         });
 
