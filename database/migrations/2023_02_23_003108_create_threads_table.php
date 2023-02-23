@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::create('threads', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('board_banner')->nullable();
-            $table->string('board_icon')->nullable();
-            $table->string('uri');
-            $table->string('title');
-            $table->string('description');
-            $table->boolean('is_nsfw');
-            $table->boolean('is_indexed');
+            $table->ipAddress('ip');
+            $table->string('board');
+            $table->string('tripcode')->nullable();
+            $table->string('author');
+            $table->string('subject');
+            $table->string('body');
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boards');
+        Schema::dropIfExists('threads');
     }
 };

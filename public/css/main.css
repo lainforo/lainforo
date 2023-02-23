@@ -1,6 +1,8 @@
 body {
     background-color: rgb(237, 227, 210);
     margin: 4%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
 }
 
 h1 {
@@ -31,4 +33,26 @@ a:hover {
     border-style: solid;
     border-color: rgb(177, 58, 58);
     padding: 5px;
+}
+
+.authorname {
+    color: rgb(0, 128, 0);
+    font-weight: bold;
+}
+
+.authortrip {
+    color: rgb(0, 128, 0);
+}
+
+.subject {
+    color:rgb(177, 58, 58);
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    font-family: inherit;
 }
