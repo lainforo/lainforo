@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Board;
 use App\Models\Thread;
+use App\Models\Reply;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -57,6 +58,7 @@ class ViewServiceProvider extends ServiceProvider
         View::composer(['thread.view'], function ($view) {
             $view->with([
                 'boards' => Board::where('is_indexed', true)->orderBy('uri', 'asc')->get(),
+                'board' => Board::where('uri', request()->route()->parameter('uri'))->first(),
             ]);
         });
     }

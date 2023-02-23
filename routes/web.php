@@ -27,6 +27,7 @@ Route::view('/admin/edit/{uri}/', 'admin.editboard')->name('admin.editboard')->m
 // - Thread operations -
 Route::get('/{uri}/{thread}', [PostController::class, 'getThread'])->name('thread');
 Route::post('/{uri}/thread/create', [PostController::class, 'putThread'])->name('putthread')->middleware(UserBan::class);
+Route::post('/{thread}/reply/create', [PostController::class, 'putReply'])->name('putreply')->middleware(UserBan::class);
 
 // - Board operations -
 Route::get('/{uri}/', [BoardController::class, 'getBoard'])->name('board');

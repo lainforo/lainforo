@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" />
     </head>
     <body>
-        <h1 align="center">Edit /{{ $uri }}/ - Mastermind</h1>
+        <h1 align="center"><a href="{{ route('mastermind') }}">Edit /{{ $uri }}/ - Mastermind</a></h1>
 
         <div class="content">        
             <h1>Board settings</h1>

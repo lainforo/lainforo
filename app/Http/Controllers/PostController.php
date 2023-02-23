@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Thread;
+use App\Models\Reply;
 
 class PostController extends Controller
 {
@@ -29,8 +30,29 @@ class PostController extends Controller
 
     public function getThread($uri, $thread)
     {
+        
+        $replies = Reply::where('replyto', $thread)->get();
         $thread = Thread::where('id', $thread)->first();
+        session()->put('thread_id', $thread);
 
-        return view('thread.view', ['thread' => $thread, 'uri' => $uri]);
+        return view('thread.view', ['thread' => $thread, 'uri' => $uri, 'replies' => $replies]);
+    }
+
+    public function putReply(Request $request, $thread)
+    {
+        $reply = new Reply;
+
+        $reply->author = $request->author;
+        $reply->replyto = $thread;
+        $reply->ip = $request->ip();
+        $reply->body = $request->body;
+
+        if ($request->tripcode ?? '') {
+            $reply->tripcode = hash('sha256', $request->tripcode);
+        }        
+
+        $reply->save();
+
+        return redirect()->back();
     }
 }
