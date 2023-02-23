@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BoardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserBan;
@@ -23,6 +24,8 @@ Route::view('/', 'main.index')->name('index');
 // - Administration -
 Route::view('/admin/mastermind', 'admin.mastermind')->name('mastermind')->middleware(CheckAdminCookie::class);
 Route::view('/admin/edit/{uri}/', 'admin.editboard')->name('admin.editboard')->middleware(CheckAdminCookie::class);
+Route::view('/admin/login', 'admin.login')->name('admin.login');
+Route::post('/admin/auth', [AdminController::class, 'adminAuth'])->name('admin.auth');
 
 // - Thread operations -
 Route::get('/{uri}/{thread}', [PostController::class, 'getThread'])->name('thread');

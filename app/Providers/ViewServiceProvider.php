@@ -41,7 +41,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         // Main public views
-        View::composer(['main.*'], function ($view) {
+        View::composer(['main.*', 'admin.login'], function ($view) {
             $view->with('boards', Board::where('is_indexed', true)->orderBy('uri', 'asc')->get());
         });
 

@@ -15,6 +15,10 @@ class CheckAdminCookie
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if ($request->hasCookie('adminlogin')) {
+            return $next($request);
+        }
+
+        return redirect(route('admin.login'));
     }
 }
