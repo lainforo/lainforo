@@ -47,10 +47,18 @@ class ViewServiceProvider extends ServiceProvider
 
         // Board pages
         View::composer(['board.view'], function ($view) {
+            $uri = request()->route()->parameter('uri');
+
+            if (Board::where('uri', $uri)->pluck('is_indexed')->first() == true) {
+                $boards = Board::where('is_indexed', true)->orderBy('uri', 'asc')->get();
+            } else {
+                $boards = Board::orderBy('uri', 'asc')->get();
+            }
+
             $view->with([
-                'threads' => Thread::where('board', request()->route()->parameter('uri'))->orderBy('created_at', 'desc')->get(),
-                'board' => Board::where('uri', request()->route()->parameter('uri'))->first(),
-                'boards' => Board::where('is_indexed', true)->orderBy('uri', 'asc')->get(),
+                'boards' => $boards,
+                'threads' => Thread::where('board', $uri)->orderBy('created_at', 'desc')->get(),
+                'board' => Board::where('uri', $uri)->first(),
             ]);
         });
 
