@@ -67,10 +67,14 @@ class BoardController extends Controller
 
         if ($request->board_icon ?? '') {
             $board->board_icon = $request->board_icon;
+        } else {
+            $board->board_banner = null;
         }
 
         if ($request->board_banner ?? '') {
             $board->board_banner = $request->board_banner;
+        } else {
+            $board->board_banner = null;
         }
 
         $board->save();
