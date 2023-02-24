@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\View\Composers\ProfileComposer;
 use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Board;
 use App\Models\Thread;
@@ -48,13 +49,14 @@ class ViewServiceProvider extends ServiceProvider
         // Board pages
         View::composer(['board.view'], function ($view) {
             $uri = request()->route()->parameter('uri');
+            $request = app(Request::class);
 
-            if (Board::where('uri', $uri)->pluck('is_indexed')->first() == true) {
-                $boards = Board::where('is_indexed', true)->orderBy('uri', 'asc')->get();
-            } else {
+            if ($request->hasCookie('adminlogin')) {
                 $boards = Board::orderBy('uri', 'asc')->get();
+            } else {
+                $boards = Board::where('is_indexed', true)->orderBy('uri', 'asc')->get();
             }
-
+            
             $view->with([
                 'boards' => $boards,
                 'threads' => Thread::where('board', $uri)->orderBy('created_at', 'desc')->get(),
