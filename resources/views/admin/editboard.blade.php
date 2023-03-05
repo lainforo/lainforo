@@ -16,7 +16,7 @@
                 <input name="title" placeholder="Board title" value="{{ $board->title }}"><br />
                 <input name="description" placeholder="Board description" value="{{ $board->description }}"><br />
                 <input name="board_icon" placeholder="(Optional) board icon" value="{{ $board->board_icon }}"><br />
-                <input name="board_banner" placeholder="(Optional board banner" value="{{ $board->board_banner }}"><br />
+                <input name="board_banner" placeholder="(Optional) board banner" value="{{ $board->board_banner }}"><br />
                 NSFW: <input name="is_nsfw" type="checkbox"
                 @if ($board->is_nsfw ?? '')
                     checked

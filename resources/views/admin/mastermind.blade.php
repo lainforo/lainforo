@@ -24,7 +24,7 @@
                 <input name="title" placeholder="Board title"><br />
                 <input name="description" placeholder="Board description"><br />
                 <input name="board_icon" placeholder="(Optional) board icon"><br />
-                <input name="board_banner" placeholder="(Optional board banner"><br />
+                <input name="board_banner" placeholder="(Optional) board banner"><br />
                 NSFW: <input name="is_nsfw" type="checkbox"><br />
                 Public (indexed): <input name="is_indexed" type="checkbox" checked><br />
                 <input type="submit" value="New Board">
