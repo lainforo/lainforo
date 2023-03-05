@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Index - {{ env('LF_SITENAME') }}</title>
+        <title>{{ $board->title }} - {{ env('LF_SITENAME') }}</title>
         <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" />
     </head>
     <body>
