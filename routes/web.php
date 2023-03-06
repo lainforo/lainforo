@@ -34,6 +34,7 @@ Route::post('/{thread}/reply/create', [PostController::class, 'putReply'])->name
 
 // - Board operations -
 Route::view('/search/', 'main.search')->name('search');
+Route::post('/search/results/', [BoardController::class, 'search'])->name('search.results');
 Route::get('/{uri}/', [BoardController::class, 'getBoard'])->name('board');
 Route::post('/board/create', [BoardController::class, 'putBoard'])->name('board.create')->middleware(CheckAdminCookie::class);
 Route::post('/board/edit/{uri}', [BoardController::class, 'editBoard'])->name('board.edit')->middleware(CheckAdminCookie::class);

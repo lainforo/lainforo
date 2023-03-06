@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->boolean(('is_indexed'));
             $table->ipAddress('ip');
             $table->string('board');
             $table->string('tripcode')->nullable();

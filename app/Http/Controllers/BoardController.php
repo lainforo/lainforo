@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Board;
+use App\Models\Thread;
 
 class BoardController extends Controller
 {
@@ -79,5 +80,12 @@ class BoardController extends Controller
 
         $board->save();
         return redirect((route('board', ['uri' => $request->uri])));
+    }
+
+    public function search(Request $request)
+    {
+        $results = Thread::where('subject', 'LIKE', '%lain%')->orderBy('id', 'desc')->where('is_indexed', true)->get();
+
+        return view('main.results', ['searchstring' => $request->string, 'results' => $results]);
     }
 }

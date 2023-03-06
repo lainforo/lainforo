@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->boolean(('is_indexed'));
             $table->integer('replyto');
             $table->ipAddress('ip');
             $table->string('author');

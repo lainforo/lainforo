@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Board;
 use App\Models\Thread;
 use App\Models\Reply;
 
@@ -16,6 +17,7 @@ class PostController extends Controller
         $thread->board = $uri;
         $thread->ip = $request->ip();
         $thread->subject = $request->subject;
+        $thread->is_indexed = Board::where('uri', $uri)->value('is_indexed');
         $thread->body = $request->body;
 
         // Check if a tripcode was supplied
@@ -46,6 +48,7 @@ class PostController extends Controller
         $reply->replyto = $thread;
         $reply->ip = $request->ip();
         $reply->body = $request->body;
+        $reply->is_indexed = Thread::where('id', $thread)->value('is_indexed');
 
         if ($request->tripcode ?? '') {
             $reply->tripcode = hash('sha256', $request->tripcode);

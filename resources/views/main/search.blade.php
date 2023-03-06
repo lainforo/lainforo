@@ -7,7 +7,7 @@
     <body>
         <div align="center">
             <h1>Search {{ env('LF_SITENAME') }}</h1>
-            
+            @include('main.form.search')
 
         </div>
         <div class="footer">
