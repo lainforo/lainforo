@@ -15,6 +15,10 @@
             <i>{{ $board->description }}</i>
             @include('main.form.makethread')
             <hr>
+            @if (request()->hasCookie('adminlogin'))
+                <a href="{{ route('admin.editboard', ['uri' => $board->uri]) }}">Edit Board</a>
+                <hr>
+            @endif
         </div>
 
         @include('board.threads')
