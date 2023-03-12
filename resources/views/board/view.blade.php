@@ -3,6 +3,9 @@
     <head>
         <title>{{ $board->title }} - {{ env('LF_SITENAME') }}</title>
         <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" />
+        @if ($board->board_icon ?? '')
+            <link rel="icon" type="image/x-icon" href="{{ $board->board_icon }}" />
+        @endif
     </head>
     <body>
         <div align="center">
