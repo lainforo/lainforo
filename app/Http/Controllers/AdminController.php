@@ -12,7 +12,10 @@ class AdminController extends Controller
         if ($request->password == env('LF_PASSWORD')) {
             $response = new Response(redirect(route('mastermind')));
             $response->withCookie(cookie('adminlogin', $request->password, 1440));
+
             return $response;
+        } else {
+            return view('main.error', ['error' => 'Invalid admin password.']);
         }
     }
 }
