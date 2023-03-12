@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Board;
 use App\Models\Thread;
+use Illuminate\Http\Request;
 
 class BoardController extends Controller
 {
     public function getBoard($uri)
     {
         session()->put('board_uri', $uri);
+
         return view('board.view');
     }
 
@@ -21,7 +22,7 @@ class BoardController extends Controller
         $board->uri = $request->uri;
         $board->title = $request->title;
         $board->description = $request->description;
-        
+
         if ($request->is_nsfw ?? '') {
             $board->is_nsfw = true;
         } else {
@@ -43,6 +44,7 @@ class BoardController extends Controller
         }
 
         $board->save();
+
         return redirect((route('board', ['uri' => $request->uri])));
     }
 
@@ -53,7 +55,7 @@ class BoardController extends Controller
         $board->uri = $request->uri;
         $board->title = $request->title;
         $board->description = $request->description;
-        
+
         if ($request->is_nsfw ?? '') {
             $board->is_nsfw = true;
         } else {
@@ -79,7 +81,15 @@ class BoardController extends Controller
         }
 
         $board->save();
+
         return redirect((route('board', ['uri' => $request->uri])));
+    }
+
+    public function delBoard(Request $request, $uri)
+    {
+        Board::where('uri', $uri)->first()->delete();
+
+        return view('admin.mastermind');
     }
 
     public function search(Request $request)

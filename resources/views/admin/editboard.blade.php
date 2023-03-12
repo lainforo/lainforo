@@ -9,6 +9,8 @@
 
         <div class="content">        
             <h1>Board settings</h1>
+            <b><a href="{{ route('board.delete', ['uri' => $uri]) }}">Delete Board</a></b>
+            <hr>
             <form method="post" action="{{ route('board.edit', ['uri' => $uri]) }}">
                 @csrf
 

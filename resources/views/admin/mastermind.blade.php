@@ -29,7 +29,7 @@
                 Public (indexed): <input name="is_indexed" type="checkbox" checked><br />
                 <input type="submit" value="New Board">
             </form>
-
+            @if ($allboards)
             <h1>Board List</h1>
             <table>
                 <thead>
@@ -44,20 +44,24 @@
                 </thead>
                 <tbody>
                     @foreach ($allboards as $board)
-                        <tr>
-                            <td>{{ $board->title }}</td>
-                            <td>{{ $board->uri }}</td>
-                            <td>{{ $board->description }}</td>
-                            <td>{{ $board->is_indexed }}</td>
-                            <td>{{ $board->is_nsfw }}</td>
+                    <tr>
+                        <td>{{ $board->title }}</td>
+                        <td>{{ $board->uri }}</td>
+                        <td>{{ $board->description }}</td>
+                        <td>{{ $board->is_indexed }}</td>
+                        <td>{{ $board->is_nsfw }}</td>
                             <td><a href="{{ route('admin.editboard', ['uri' => $board->uri]) }}">Edit {{ $board->title }}</a></td>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <div class="footer">
+                        @endforeach
+                    </tbody>
+                </table>
+                @else
+                <hr>
+                No boards have been added yet.
+                @endif
+            </div>
+            
+            <div class="footer">
             @include('board.nav', ['boards' => $allboards])
         </div>
     </body>
