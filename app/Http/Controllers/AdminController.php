@@ -18,4 +18,9 @@ class AdminController extends Controller
             return view('main.error', ['error' => 'Invalid admin password.']);
         }
     }
+
+    public function userBan($ip)
+    {
+        return $ip;
+    }
 }

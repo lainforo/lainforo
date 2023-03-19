@@ -4,6 +4,11 @@
         @if ($reply->tripcode ?? '')
             <span class="authortrip">!{{ substr($reply->tripcode, 0, 8) }}</span>
         @endif
+
+        @if (request()->hasCookie('adminlogin'))
+                <i>[{{ $reply->ip }}]</i>
+        @endif
+
         {{ $reply->created_at }} No.{{ $reply->id }}
         <br />
         <pre>{{ $reply->body }}</pre>

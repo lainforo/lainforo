@@ -3,6 +3,9 @@
     <head>
         <title>{{ $thread->subject }} - {{ env('LF_SITENAME') }}</title>
         <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" />
+        @if ($board->board_icon ?? '')
+            <link rel="icon" type="image/x-icon" href="{{ $board->board_icon }}" />
+        @endif
     </head>
     <body>
     <div align="center">
@@ -23,6 +26,9 @@
             <span class="authortrip">!{{ substr($thread->tripcode, 0, 8) }}</span>
             @endif
 
+            @if (request()->hasCookie('adminlogin'))
+                <i>[{{ $thread->ip }}]</i>
+            @endif
             at {{ $thread->created_at }}
         </div>
         <pre>{{ $thread->body }}</pre>
