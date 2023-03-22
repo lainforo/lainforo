@@ -88,6 +88,7 @@ class BoardController extends Controller
     public function delBoard(Request $request, $uri)
     {
         Board::where('uri', $uri)->first()->delete();
+        Thread::where('board', $uri)->delete();
 
         return view('admin.mastermind');
     }

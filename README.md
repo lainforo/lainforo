@@ -3,4 +3,4 @@
 _The README will be improved in 3 2 1_
 
 <hr>
-Live free or die 🇺🇸
+Live free or die [us_emoji]
