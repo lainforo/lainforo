@@ -46,7 +46,7 @@
                     @foreach ($allboards as $board)
                     <tr>
                         <td>{{ $board->title }}</td>
-                        <td>{{ $board->uri }}</td>
+                        <td>/{{ $board->uri }}/</td>
                         <td>{{ $board->description }}</td>
                         <td>{{ $board->is_indexed }}</td>
                         <td>{{ $board->is_nsfw }}</td>
@@ -59,6 +59,31 @@
                 <hr>
                 No boards have been added yet.
                 @endif
+                @if ($activebans)
+                <h1>Active bans</h1>
+                    <table>
+                    <thead>
+                            <tr>
+                                <th>IP</th>
+                                <th>Banned at</th>
+                                <th>Reason</th>
+                                <th>Lift ban</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($activebans as $ban)
+                                <tr>
+                                    <td>{{ $ban->ip }}</td>
+                                    <td>{{ $ban->created_at }}</td>
+                                    <td>{{ $ban->reason }}</td>
+                                    <td><a href="{{ route('user.ban.lift', ['ip' => $ban->ip]) }}">Lift ban for {{ $ban->ip }}</a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                    </table>
+                    @else
+                    @endif
             </div>
             
             <div class="footer">

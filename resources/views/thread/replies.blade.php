@@ -6,7 +6,7 @@
         @endif
 
         @if (request()->hasCookie('adminlogin'))
-                <i>[{{ $reply->ip }}]</i>
+        <a href="{{ route('user.ban', ['ip' => $reply->ip]) }}" title="Click IP to ban"><i>[{{ $reply->ip  }}]</i></a>
         @endif
 
         {{ $reply->created_at }} No.{{ $reply->id }}

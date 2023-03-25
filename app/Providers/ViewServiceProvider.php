@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Board;
 use App\Models\Thread;
 use App\Models\Reply;
+use App\Models\Ban;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,7 @@ class ViewServiceProvider extends ServiceProvider
                 'boardcount' => Board::count(),
                 'allboards' => Board::orderBy('uri', 'asc')->get(),
                 'postcount' => Thread::count(),
+                'activebans' => Ban::orderBy('created_at', 'asc')->get()
             ]);
         });
 

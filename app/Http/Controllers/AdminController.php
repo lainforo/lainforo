@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\Ban;
 
 class AdminController extends Controller
 {
@@ -21,6 +22,20 @@ class AdminController extends Controller
 
     public function userBan($ip)
     {
-        return $ip;
+        $ban = new Ban;
+
+        $ban->ip = $ip;
+        $ban->reason = "Still working on `reason`";
+
+        $ban->save();
+
+        return "Successfully banned " . $ip;
+    }
+
+    public function userBanLift($ip)
+    {
+        Ban::where('ip', $ip)->delete();
+
+        return redirect()->back();
     }
 }

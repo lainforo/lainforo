@@ -27,7 +27,7 @@
             @endif
 
             @if (request()->hasCookie('adminlogin'))
-                <i>[{{ $thread->ip }}]</i>
+                <a href="{{ route('user.ban', ['ip' => $thread->ip]) }}" title="Click IP to ban"><i>[{{ $thread->ip  }}]</i></a>
             @endif
             at {{ $thread->created_at }}
         </div>
